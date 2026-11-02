@@ -18,6 +18,12 @@ const {
 const fs = require('node:fs');
 const path = require('node:path');
 
+try {
+  process.loadEnvFile(path.join(__dirname, '.env'));
+} catch (error) {
+  if (error.code !== 'ENOENT') console.error('Could not load the .env file:', error.message);
+}
+
 const PURPLE = 0x8b5cf6;
 const GREEN = 0x35c98a;
 const RED = 0xed5565;
